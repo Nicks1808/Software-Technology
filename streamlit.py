@@ -67,7 +67,7 @@ if uploaded_file is not None:
    
     st.write("Exploratory Data Analysis (EDA) Diagrams")
 
-    # Histogram of a selected column
+   
     selected_column = st.selectbox("Επιλέξτε στήλη για ιστόγραμμα", df.columns[:-1])
     fig, ax = plt.subplots()
     df[selected_column].hist(ax=ax, bins=30)

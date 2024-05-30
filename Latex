@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[english, greek]{babel}
+
+\begin{document}
+
+
+\title{\textlatin{Web-based} Εφαρμογή για Ανάλυση και Οπτικοποίηση Δεδομένων Πίνακα}
+\author{Σορτικός Νίκος (\textlatin{inf2021207})}
+\date{}
+\selectlanguage{greek}
+\maketitle
+
+\section*{Εισαγωγή}
+Η εφαρμογή αυτή είναι μια διαδραστική \textlatin{web-based} εφαρμογή για την ανάλυση και οπτικοποίηση δεδομένων πίνακα (\textlatin{tabular data}) χρησιμοποιώντας διάφορους αλγορίθμους μηχανικής μάθησης. Η εφαρμογή αναπτύχθηκε με τη χρήση της βιβλιοθήκης \textlatin{Streamlit} για την κατασκευή του περιβάλλοντος χρήστη, και χρησιμοποιεί βιβλιοθήκες του Python όπως \textlatin{pandas}, \textlatin{matplotlib} και \textlatin{scikit-learn} για την επεξεργασία των δεδομένων και την εφαρμογή αλγορίθμων μηχανικής μάθησης.
+
+\section*{Φόρτωση Δεδομένων}
+Αρχικά, ο χρήστης έχει τη δυνατότητα να φορτώσει ένα αρχείο \textlatin{CSV} ή \textlatin{Excel} που περιέχει τα δεδομένα. Η εφαρμογή διαβάζει το αρχείο και εμφανίζει τις πρώτες γραμμές του πίνακα δεδομένων, τις στατιστικές περιγραφές του και την τελευταία στήλη ως ετικέτα εξόδου. Στη συνέχεια, ο χρήστης μπορεί να επιλέξει έναν αλγόριθμο μείωσης διαστάσεων (\textlatin{PCA} ή \textlatin{t-SNE}) για να οπτικοποιήσει τα δεδομένα σε 2 διαστάσεις, με τα αποτελέσματα να εμφανίζονται σε ένα \textlatin{scatter plot}.
+
+\section*{Εξερεύνηση Δεδομένων}
+Η εφαρμογή παρέχει επίσης δυνατότητες για εξερεύνηση των δεδομένων μέσω διαφόρων διαγραμμάτων, όπως ιστόγραμμα, scatter plot και box plot. Ο χρήστης μπορεί να επιλέξει τη στήλη που επιθυμεί να αναλύσει και να οπτικοποιήσει τα δεδομένα αντίστοιχα.
+
+\section*{Κατηγοριοποίηση Δεδομένων}
+Για την κατηγοριοποίηση των δεδομένων, η εφαρμογή υποστηρίζει δύο αλγόριθμους: \textlatin{K-Nearest Neighbors (K-NN)} και Δέντρο Αποφάσεων. Ο χρήστης μπορεί να καθορίσει τις παραμέτρους για κάθε αλγόριθμο, όπως ο αριθμός των γειτόνων για τον K-NN και το μέγιστο βάθος για το Δέντρο Αποφάσεων. Μετά την εκπαίδευση των μοντέλων, η εφαρμογή εμφανίζει την ακρίβεια, την αναφορά ταξινόμησης και τον πίνακα σύγχυσης για κάθε αλγόριθμο, επιτρέποντας τη σύγκριση της απόδοσης τους.
+
+\section*{Ομαδοποίηση Δεδομένων}
+Για την ομαδοποίηση των δεδομένων, η εφαρμογή υποστηρίζει επίσης δύο αλγόριθμους: \textlatin{K-Means} και \textlatin{Gaussian Mixture Model} ή \textlatin{GMM}. Ο χρήστης μπορεί να επιλέξει τον αριθμό των συστάδων για τον \textlatin{K-Means} και τον αριθμό των συστατικών για το \textlatin{GMM}. Μετά την εκπαίδευση των μοντέλων, η εφαρμογή εμφανίζει το \textlatin{Adjusted Rand Index} για κάθε αλγόριθμο, επιτρέποντας τη σύγκριση της απόδοσης τους.
+
+\section*{Ενότητα Πληροφοριών}
+Τέλος, η εφαρμογή περιλαμβάνει μια ενότητα πληροφοριών που εξηγεί τον τρόπο λειτουργίας της εφαρμογής και τα βήματα που ακολουθεί ο χρήστης για να αναλύσει τα δεδομένα του. Η συνολική προσέγγιση της εφαρμογής είναι να παρέχει ένα ολοκληρωμένο εργαλείο για την ανάλυση και οπτικοποίηση δεδομένων πίνακα, κάνοντας τη διαδικασία προσιτή και εύκολη για τους χρήστες.
+
+
+\section*{\textlatin{Github}}
+Μπορείτε να βρείτε το πρόγραμμα στον ακόλουθο σύνδεσμο:
+\selectlanguage{english}
+\href{https://github.com/Nicks1808/Software-Technology}{https://github.com/Nicks1808/Software-Technology}
+
+\selectlanguage{greek}
+
+\section*{\textlatin{Dockerfile}}
+Για το \textlatin{Dockerfile}, αρχικά έφτιαξα το \textlatin{requirements.txt}, το οποίο βρίσκεται και στο \textlatin{Github} που έβαλα προηγουμένως, στην συνέχεια έφτιαξα ένα νέο αρχείο στο \textlatin{Visual Studio Code}, στο οποίο έβαλα τον κώδικα που έχω ανεβασμένο στο \textlatin{Github}, στον φάκελο που λέγεται \textlatin{Dockerfile} και τέλος έτρεξα τις παρακάτω εντολές στο \textlatin{Τerminal} του \textlatin{Visual Studio Code}.
+
+\selectlanguage{english}
+\section*{Commands}
+docker build -t streamlit-app 
+\selectlanguage{greek}
+και
+\selectlanguage{english}
+docker run -p 8501:8501 streamlit-app
+
+\selectlanguage{greek}
+\section*{\textlatin{Screenshot} Φακέλου}
+\selectlanguage{english}
+\href{https://gyazo.com/8ca8697129afb5c97ffa9974175d9aff}{https://gyazo.com/8ca8697129afb5c97ffa9974175d9aff}
+
+\selectlanguage{greek}
+\section*{Αρχείο \textlatin{Latex}}
+Ο κώδικας, με τον οποίο έγραψα αυτό το \textlatin{pdf}, μέσω του \textlatin{Latex} είναι ανεβασμένος ολόκληρος στο \textlatin{Github}, στον φάκελο που ονομάζεται \textlatin{Latex}.
+
+\end{document}

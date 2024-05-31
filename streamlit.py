@@ -13,6 +13,28 @@ from sklearn.mixture import GaussianMixture
 # Τίτλος της εφαρμογής
 st.title("Web-based Εφαρμογή για Tabular Data με Οπτικοποιήσεις και Αλγορίθμους Μηχανικής Μάθησης")
 
+
+info = """
+    Η εφαρμογή αυτή είναι μια web-based εφαρμογή που επιτρέπει την ανάλυση και οπτικοποίηση δεδομένων πίνακα (tabular data) 
+    με τη χρήση διαφόρων αλγορίθμων μηχανικής μάθησης.
+
+    Τρόπος Λειτουργίας:
+    1. Ο χρήστης φορτώνει ένα αρχείο CSV ή Excel με τα δεδομένα που θέλει να αναλύσει.
+    2. Τα δεδομένα εμφανίζονται στην οθόνη, δίνοντας μια πρώτη ματιά στις πρώτες γραμμές και στα στατιστικά περιγραφικά τους.
+    3. Ο χρήστης μπορεί να επιλέξει έναν αλγόριθμο μείωσης διαστάσεων (PCA ή t-SNE) για να οπτικοποιήσει τα δεδομένα σε 2 διαστάσεις.
+    4. Παρέχονται επίσης δυνατότητες για εξερεύνηση των δεδομένων μέσω διαγραμμάτων (ιστόγραμμα, scatter plot, box plot).
+    5. Η εφαρμογή υποστηρίζει κατηγοριοποίηση χρησιμοποιώντας K-Nearest Neighbors (K-NN) και Δέντρο Αποφάσεων.
+    6. Επίσης υποστηρίζει ομαδοποίηση χρησιμοποιώντας K-Means και Gaussian Mixture Model (GMM).
+    7. Τα αποτελέσματα των αλγορίθμων εμφανίζονται στην οθόνη, επιτρέποντας στον χρήστη να συγκρίνει την απόδοσή τους.
+
+    
+    Για την εγγραφή αυτού του κώδικα δεν υπήρξε ομάδα. Την έγραψα μόνος μου 
+    Σορτικός Νίκος (inf2021207).
+    """
+
+st.sidebar.markdown(info)
+
+
 # Επιλογή αρχείου
 uploaded_file = st.file_uploader("Φορτώστε το αρχείο σας", type=["csv", "xlsx"])
 
@@ -68,7 +90,7 @@ if uploaded_file is not None:
     st.write("Exploratory Data Analysis (EDA) Diagrams")
 
     # Histogram of a selected column
-    selected_column = st.selectbox("Επιλέξτε στήλη για ιστόγραμμα", df.columns[:-1])
+    selected_column = st.selectbox("Επιλέξτε στήλη για ιστόγραμμα", df.columns[:-1].tolist())
     fig, ax = plt.subplots()
     df[selected_column].hist(ax=ax, bins=30)
     plt.xlabel(selected_column)
@@ -77,7 +99,11 @@ if uploaded_file is not None:
     st.pyplot(fig)
 
     # Scatter plot between two selected columns
-    selected_columns = st.multiselect("Επιλέξτε δύο στήλες για scatter plot", df.columns[:-1], default=df.columns[:2])
+    selected_columns = st.multiselect(
+        "Επιλέξτε δύο στήλες για scatter plot", 
+        df.columns[:-1].tolist(), 
+        default=df.columns[:2].tolist()
+    )
     if len(selected_columns) == 2:
         fig, ax = plt.subplots()
         ax.scatter(df[selected_columns[0]], df[selected_columns[1]], c=y, cmap='viridis')
@@ -87,7 +113,7 @@ if uploaded_file is not None:
         st.pyplot(fig)
 
     # Box plot of a selected column
-    selected_column_box = st.selectbox("Επιλέξτε στήλη για box plot", df.columns[:-1])
+    selected_column_box = st.selectbox("Επιλέξτε στήλη για box plot", df.columns[:-1].tolist())
     fig, ax = plt.subplots()
     df.boxplot(column=selected_column_box, ax=ax)
     plt.title(f"Box Plot of {selected_column_box}")
@@ -167,25 +193,4 @@ else:
     st.write("Παρακαλώ φορτώστε ένα αρχείο CSV ή Excel για να δείτε τα δεδομένα σας.")
 
 
-    info = """
-    Η εφαρμογή αυτή είναι μια web-based εφαρμογή που επιτρέπει την ανάλυση και οπτικοποίηση δεδομένων πίνακα (tabular data) 
-    με τη χρήση διαφόρων αλγορίθμων μηχανικής μάθησης.
-
-    Τρόπος Λειτουργίας:
-    1. Ο χρήστης φορτώνει ένα αρχείο CSV ή Excel με τα δεδομένα που θέλει να αναλύσει.
-    2. Τα δεδομένα εμφανίζονται στην οθόνη, δίνοντας μια πρώτη ματιά στις πρώτες γραμμές και στα στατιστικά περιγραφικά τους.
-    3. Ο χρήστης μπορεί να επιλέξει έναν αλγόριθμο μείωσης διαστάσεων (PCA ή t-SNE) για να οπτικοποιήσει τα δεδομένα σε 2 διαστάσεις.
-    4. Παρέχονται επίσης δυνατότητες για εξερεύνηση των δεδομένων μέσω διαγραμμάτων (ιστόγραμμα, scatter plot, box plot).
-    5. Η εφαρμογή υποστηρίζει κατηγοριοποίηση χρησιμοποιώντας K-Nearest Neighbors (K-NN) και Δέντρο Αποφάσεων.
-    6. Επίσης υποστηρίζει ομαδοποίηση χρησιμοποιώντας K-Means και Gaussian Mixture Model (GMM).
-    7. Τα αποτελέσματα των αλγορίθμων εμφανίζονται στην οθόνη, επιτρέποντας στον χρήστη να συγκρίνει την απόδοσή τους.
-
-    
-    Για την εγγραφή αυτού του κώδικα δεν υπήρξε ομάδα. Την έγραψα μόνος μου 
-    Σορτικός Νίκος (inf2021207).
-    """
-
-
-    st.sidebar.markdown(info)
-    
 

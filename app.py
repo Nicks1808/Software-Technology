@@ -125,8 +125,8 @@ if page == "ℹ️ Πληροφορίες":
     **Εκφράσεις Γονιδίων**: Εδώ μπορείτε να οπτικοποιήσετε την έκφραση ενός γονιδίου σε διαφορετικές ομάδες κυττάρων, χρησιμοποιώντας γραφήματα όπως το violin plot.
     """)
 
-elif page == "📥Μετατροπή CSV σε h5ad":
-    st.title("📥Μετατροπή CSV σε AnnData (.h5ad)")
+elif page == "📥Μετατροπή CSV/TXT σε h5ad":
+    st.title("📥Μετατροπή CSV/TXT σε AnnData (.h5ad)")
     uploaded_file = st.file_uploader("📤 Ανέβασε το αρχείο CSV", type=["csv", "txt"])
   #Dropdown για επιλογή διαχωριστικού
     delimiter_options = {

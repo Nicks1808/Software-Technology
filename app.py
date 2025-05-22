@@ -84,7 +84,7 @@ div[role="radiogroup"] > label > div:first-child {
 
 pages = [
     "ℹ️ Πληροφορίες",
-    "📥Μετατροπή CSV σε h5ad",
+    "📥Μετατροπή CSV/TXT σε h5ad",
     "⚙️Προκαταρκτική Επεξεργασία",
     "🧬Ενοποίηση Δεδομένων",
     "🔗Scanorama Integration",

@@ -1,0 +1,9 @@
+streamlit
+scanpy
+scanorama
+decoupler==1.4.0
+numpy==1.23.5
+numba==0.56.4
+matplotlib
+seaborn
+pandas

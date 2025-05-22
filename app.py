@@ -1,4 +1,3 @@
-
 import streamlit as st
 import scanpy as sc
 import pandas as pd
@@ -13,8 +12,6 @@ import webbrowser
 from io import StringIO
 import anndata as ad
 from datetime import datetime
-
-
 
 st.set_page_config(page_title="scRNA-seq App", layout="wide")
 
@@ -85,8 +82,8 @@ div[role="radiogroup"] > label > div:first-child {
 </style>
 """, unsafe_allow_html=True)
 
-
 pages = [
+    "ℹ️ Πληροφορίες",
     "📥Μετατροπή CSV σε h5ad",
     "⚙️Προκαταρκτική Επεξεργασία",
     "🧬Ενοποίηση Δεδομένων",
@@ -101,7 +98,27 @@ pages = [
 st.sidebar.markdown('<div class="sidebar-title">🧬 Εργαλεία Ανάλυσης</div>', unsafe_allow_html=True)
 page = st.sidebar.radio("Μενού", pages, label_visibility="collapsed")
 
-if page == "📥Μετατροπή CSV σε h5ad":
+if page == "ℹ️ Πληροφορίες":
+    st.title("ℹ️ Πληροφορίες για την Εφαρμογή")
+    st.write("""
+    **Μετατροπή CSV σε h5ad**: Εδώ μπορείτε να ανεβάσετε αρχεία CSV και να τα μετατρέψετε σε μορφή h5ad, η οποία είναι κατάλληλη για περαιτέρω ανάλυση με τη βιβλιοθήκη Scanpy.
+
+    **Προκαταρκτική Επεξεργασία**: Σε αυτό το βήμα, η εφαρμογή εκτελεί διαδικασίες όπως φιλτράρισμα, κανονικοποίηση, PCA και clustering (Louvain) στα δεδομένα.
+
+    **Ενοποίηση Δεδομένων**: Αυτή η λειτουργία συγχωνεύει πολλά αρχεία h5ad σε ένα ενιαίο dataset για ανάλυση.
+
+    **Scanorama Integration**: Η εφαρμογή χρησιμοποιεί την τεχνική Scanorama για την ενοποίηση πολλών αρχείων h5ad με τη βοήθεια του Scanorama, που είναι ένα εργαλείο για την ενοποίηση δεδομένων scRNA-seq.
+
+    **Ανάθεση Κυτταρικών Τύπων**: Αυτή η λειτουργία εκτελεί την ανάθεση κυτταρικών τύπων χρησιμοποιώντας το μοντέλο MLM (Markov Logic Networks) με βάση τα δεδομένα transcription factor.
+
+    **DEG Ανάλυση**: Εδώ πραγματοποιείται η ανάλυση διαφορικής γονιδιακής έκφρασης (DEG) για να εντοπιστούν οι γονίδιοι που εμφανίζουν διαφορές ανάμεσα στις ομάδες κυττάρων.
+
+    **Volcano Plot**: Δημιουργείται ένα volcano plot για την απεικόνιση των αποτελεσμάτων της DEG ανάλυσης, δείχνοντας τη σχέση fold-change vs. -log10(p-value).
+
+    **Εκφράσεις Γονιδίων**: Εδώ μπορείτε να οπτικοποιήσετε την έκφραση ενός γονιδίου σε διαφορετικές ομάδες κυττάρων, χρησιμοποιώντας γραφήματα όπως το violin plot.
+    """)
+
+elif page == "📥Μετατροπή CSV σε h5ad":
     st.title("📥Μετατροπή CSV σε AnnData (.h5ad)")
     uploaded_file = st.file_uploader("📤 Ανέβασε το αρχείο CSV", type=["csv", "txt"])
   #Dropdown για επιλογή διαχωριστικού
@@ -115,6 +132,7 @@ if page == "📥Μετατροπή CSV σε h5ad":
         " ": "Κενό (space)",
         "--": "Διπλή Παύλα ( -- )"
     }
+
 
     delimiter_key = st.selectbox("Επιλέξτε διαχωριστικό:", options=list(delimiter_options.keys()),
                                  format_func=lambda x: delimiter_options[x])
@@ -154,6 +172,7 @@ if page == "📥Μετατροπή CSV σε h5ad":
 
         except Exception as e:
             st.error(f"❌ Αποτυχία ανάγνωσης αρχείου: {str(e)}")
+
 
 
 elif page == "⚙️Προκαταρκτική Επεξεργασία":
